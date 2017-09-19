@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from bookmark.models import Bookmark
-from django.views.generic import ListView, DetailView
+# from bookmark.models import Bookmark
+# from django.views.generic import ListView, DetailView
+# from bookmark.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^bookmark/$', ListView.as_view(model=Bookmark), name='index'),
-    url(r'^bookmark/(?P<pk>\d+)/$', DetailView.as_view(model=Bookmark), name='detail'),
+    url(r'^bookmark/', include("bookmark.urls"))
+    # url(r'^bookmark/$', ListView.as_view(model=Bookmark), name='index'),
+    # url(r'^bookmark/(?P<pk>\d+)/$', DetailView.as_view(model=Bookmark), name='detail'),
+    # url(r'^bookmark/$', BookmarkListV.as_view(), name='index'),
+    # url(r'^bookmark/(?P<pk>\d+)/$', BookmarkDetailV.as_view(), name='detail'),
 ]
